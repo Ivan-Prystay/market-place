@@ -1,6 +1,7 @@
 {
   "name": "market-place",
   "version": "0.1.0",
+  "homepage": "https://ivan-prystay.github.io/market-place/",
   "private": true,
   "scripts": {
     "dev": "next dev",
