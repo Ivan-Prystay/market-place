@@ -3,7 +3,7 @@ const nextConfig = {
   images: { unoptimized: true },
   experimental: { images: { unoptimized: true } },
   basePath: "/market-place",
-  output: "export",
+  // output: "export",
 };
 
 module.exports = nextConfig;
