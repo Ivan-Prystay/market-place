@@ -1,0 +1,9 @@
+{
+    "svg.preview.backgroundSaveTo": "Global",
+    "docwriter.style": "Auto-detect",
+    "docwriter.language": "Russian",
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackClasses": false,
+    "docwriter.progress.trackMethods": false,
+    "docwriter.hotkey.mac": "⌘ + ."
+}

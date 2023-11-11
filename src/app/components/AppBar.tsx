@@ -1,9 +1,12 @@
-import React from "react";
+import Logo from "./Logo";
+import NavBar from "./NavBar";
 import SigninButton from "./SigninButton";
 
 const AppBar = () => {
   return (
-    <header className="flex gap-4 p-4 bg-gradient-to-b from-white to-gray-200 shadow">
+    <header className="flex items-center justify-between h-40 border-b border-white/30 px-20">
+      <Logo />
+      <NavBar />
       <SigninButton />
     </header>
   );
