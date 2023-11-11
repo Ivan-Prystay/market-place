@@ -14,7 +14,6 @@ const links = [
 
 const NavBar = () => {
   const pathName = usePathname();
-  console.log("pathName: ", pathName);
 
   return (
     <nav>
@@ -25,7 +24,7 @@ const NavBar = () => {
               href={link.href}
               className={`${
                 pathName === link.href
-                  ? "header-link underline "
+                  ? "header-link border-b-2 pb-2"
                   : "header-link"
               }`}
             >
