@@ -14,6 +14,7 @@ const links = [
 
 const NavBar = () => {
   const pathName = usePathname();
+  console.log("pathName: ", pathName);
 
   return (
     <nav>
