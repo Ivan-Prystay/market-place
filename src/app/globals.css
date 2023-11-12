@@ -8,6 +8,8 @@
 html {
   /* overflow: scroll; */
   overflow-x: hidden;
-   }
+}
 
-  .header-link { @apply  hover:text-[#FFFCC7]}
+.header-link {
+  @apply hover:text-[#FFFCC7]
+}

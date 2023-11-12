@@ -1,20 +1,22 @@
 "use client";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 const SigninButton = () => {
   const { data: session } = useSession();
 
+  const image = session?.user?.image;
+
   return (
     <div>
       {session && session.user ? (
-        <button className="text-white text-xl" onClick={() => signOut()}>
-          {/*font-family: Nixie One;
-font-size: 20px;
-font-weight: 400;
-line-height: 23px; */}
-          Sign Out
-        </button>
+        <div className="flex flex-row gap-2">
+          {image && <Image src={image} width={30} height={30} alt="#"></Image>}
+          <button className="text-white text-xl" onClick={() => signOut()}>
+            Sign Out
+          </button>
+        </div>
       ) : (
         <button className="text-white text-xl" onClick={() => signIn()}>
           Sign In
