@@ -3,6 +3,7 @@ import title from "../../public/svg/title 2.min.svg";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
 import aboutTarology from "../../public/img/about_tarology.jpg";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -27,9 +28,24 @@ export default function Page() {
           width={500}
           style={{ marginLeft: "102px", marginTop: "422px" }}
         ></Image>
-        {/* <p>About us</p> */}
+        <div className="ml-20">
+          <div className="relative">
+            <p className="font-nixieone text-[90px] text-[#BDCAD233] blur-[2px] ml-[350px]">
+              About us
+            </p>
+            <Link
+              href={"/about"}
+              className="absolute font-nixieone text-[70px] text-[#BDCAD2] top-[51px] start-[163px] ml-[350px]"
+            >
+              About us
+            </Link>
+            <div className="w-4 h-4 rounded-full bg-[#504F66] ml-8  relative">
+              <div className="absolute w-[775px] h-[1px] bg-[#504F66] top-2 left-4"></div>
+            </div>
+          </div>
+        </div>
         <div className="mt-24">
-          <ul className="flex flex-row text-white text-xl text-[#3A475C]">
+          <ul className="flex flex-row text-xl text-[#3A475C]">
             <li>
               <Image src={aboutAstrology} width={409} alt="#"></Image>
               <h3>Astrology</h3>

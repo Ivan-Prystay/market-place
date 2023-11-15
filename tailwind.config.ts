@@ -8,17 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-fontFamily:{
-  nicomoji:['var(--font-nicomoji)'],
-  nixieone:['var(--font-nixieone)'],
-  myanmarmn: ['var(--font-myanmar-mn)']
-  
-},
-
-      backgroundImage: {
-         'my-image' : "url('../../public/img/background.png')",
+      fontFamily: {
+        nicomoji: ['var(--font-nicomoji)'],
+        nixieone: ['var(--font-nixieone)'],
+        myanmarmn: ['var(--font-myanmar-mn)']
       },
-         },
+      backgroundImage: {
+        'my-image': "url('../../public/img/background.png')",
+      },
+    },
   },
   plugins: [],
 }
