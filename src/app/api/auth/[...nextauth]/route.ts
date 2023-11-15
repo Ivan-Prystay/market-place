@@ -17,8 +17,8 @@ const handler = NextAuth({
     }),
 
     AppleProvider({
-      clientId: process.env.APPLE_ID,
-      clientSecret: process.env.APPLE_SECRET
+      clientId: process.env.APPLE_ID ?? "",
+      clientSecret: process.env.APPLE_SECRET ?? ""
     })
   ],
   secret: process.env.NEXT_PUBLIC_SECRET,
