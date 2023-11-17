@@ -1,5 +1,4 @@
 import Image from "next/image";
-import title from "../../public/svg/title 2.min.svg";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
 import aboutTarology from "../../public/img/about_tarology.jpg";
@@ -22,12 +21,6 @@ export default function Page() {
         </div>
       </section>
       <section>
-        <Image
-          src={title}
-          alt="About"
-          width={500}
-          style={{ marginLeft: "102px", marginTop: "422px" }}
-        ></Image>
         <div className="ml-20">
           <div className="relative">
             <p className="font-nixieone text-[90px] text-[#BDCAD233] blur-[2px] ml-[350px]">
