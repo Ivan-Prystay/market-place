@@ -9,7 +9,7 @@ const SigninButton = () => {
     <div>
       {session && session.user ? (
         <div className="flex flex-row gap-2">
-          <p>{session.user.name}</p>
+          <p className=" text-orange-400 text-xl">{session.user.name}</p>
           <button className="text-white text-xl" onClick={() => signOut()}>
             Sign Out
           </button>
