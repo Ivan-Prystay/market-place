@@ -1,46 +1,69 @@
 import Image from "next/image";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
-import aboutTarology from "../../public/img/about_tarology.jpg";
+import aboutTarot from "../../public/img/about_tarot.jpg";
 import Link from "next/link";
 
 export default function Page() {
   return (
     <main>
       <section>
-        <div className="flex flex-col pt-36 items-center">
-          <h1 className="text-[85px] uppercase bg-gradient-to-b from-gray-100 to-transparent text-transparent bg-clip-text font-myanmarmn">
+        <div className="tw-flex tw-flex-col tw-pt-36 tw-items-center">
+          <h1 className="tw-text-[85px] tw-uppercase tw-bg-gradient-to-b tw-from-gray-100 tw-to-transparent tw-text-transparent tw-bg-clip-text tw-font-myanmarmn">
             Discover Your Destiny:
           </h1>
-          <h2 className="text-[#BDCAD2] text-[70px] font-nixieone mt-5">
+          <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-5">
             Tarot, Astrology, Numerology
           </h2>
-          <button className="bg-[#FFFCC7] px-8 py-4 text-2xl rounded-xl text-2 mt-[137px] font-nicomoji">
+          <button className="tw-bg-[#FFFCC7] tw-px-8 tw-py-4 tw-text-2xl tw-rounded-xl tw-text-2 tw-mt-[137px] tw-font-nicomoji">
             Get started
           </button>
         </div>
       </section>
       <section>
-        <div className="ml-20">
-          <div className="relative">
-            <p className="font-nixieone text-[90px] text-[#BDCAD233] blur-[2px] ml-[350px]">
+        {/* **********   Choose your specialist ************/}
+        <div className="tw-ml-20">
+          <div className=" tw-relative">
+            <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] ">
+              Choose your specialist
+            </p>
+            <Link
+              href={"/services"}
+              className="tw-absolute tw-font-nixieone tw-text-[70px] tw-text-[#BDCAD2] tw-top-[51px] tw-start-[163px] tw-ml-[350px]"
+            >
+              Choose your specialist
+            </Link>
+            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-ml-8  tw-relative">
+              <div className="tw-absolute tw-w-[1024px] tw-h-[1px] tw-bg-[#504F66] tw-top-2 tw-left-4"></div>
+            </div>
+          </div>
+
+          <div>
+            <input className="tw-w-[1280]" type="search" name="" id="" />
+          </div>
+        </div>
+        {/*************  ABOUT ********** US ************* */}
+
+        <div className="tw-ml-20">
+          <div className="tw-relative">
+            <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] tw-ml-[350px]">
               About us
             </p>
             <Link
               href={"/about"}
-              className="absolute font-nixieone text-[70px] text-[#BDCAD2] top-[51px] start-[163px] ml-[350px]"
+              className="tw-absolute tw-font-nixieone tw-text-[70px] tw-text-[#BDCAD2] tw-top-[51px] tw-start-[163px] tw-ml-[350px]"
             >
               About us
             </Link>
-            <div className="w-4 h-4 rounded-full bg-[#504F66] ml-8  relative">
-              <div className="absolute w-[775px] h-[1px] bg-[#504F66] top-2 left-4"></div>
+            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-ml-8  tw-relative">
+              <div className="tw-absolute tw-w-[775px] tw-h-[1px] tw-bg-[#504F66] tw-top-2 tw-left-4"></div>
             </div>
           </div>
         </div>
-        <div className="mt-24">
-          <ul className="flex flex-row text-xl text-[#3A475C]">
+        <div className="tw-mt-24">
+          <ul className="tw-flex tw-flex-row tw-text-xl tw-text-[#3A475C]">
             <li>
-              <Image src={aboutAstrology} width={409} alt="#"></Image>
+              <Image src={aboutAstrology} width={409} alt="Astrology"></Image>
               <h3>Astrology</h3>
               <p>
                 Is a service that helps you uncover and understand the influence
@@ -52,7 +75,7 @@ export default function Page() {
               </p>
             </li>
             <li>
-              <Image src={aboutNumerology} width={409} alt="#"></Image>
+              <Image src={aboutNumerology} width={409} alt="Numerology"></Image>
               <h3>Numerology</h3>
               <p>
                 Is a service that is based on the study of numbers and their
@@ -64,7 +87,7 @@ export default function Page() {
               </p>
             </li>
             <li>
-              <Image src={aboutTarology} width={409} alt="#"></Image>
+              <Image src={aboutTarot} width={409} alt="Tarot"></Image>
               <h3>Tarot</h3>
               <p>
                 Is a service that utilises tarot cards to explore your life and

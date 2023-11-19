@@ -17,15 +17,15 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul className="text-white flex justify-between gap-12 text-2xl">
+      <ul className="tw-text-white tw-flex tw-justify-between tw-gap-12 tw-text-2xl">
         {links.map((link, index) => (
           <li key={index}>
             <Link
               href={link.href}
               className={`${
                 pathName === link.href
-                  ? "header-link border-b-2 pb-2"
-                  : "header-link"
+                  ? "tw-header-link tw-border-b-2 tw-pb-2"
+                  : "tw-header-link"
               }`}
             >
               {link.label}

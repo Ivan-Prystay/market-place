@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${nixeOne.variable} ${nicoMoji.variable}   ${myanmarmn.variable}`}
     >
-      <body className="bg-my-image bg-cover bg-no-repeat bg-[#050F25] ">
+      <body className="tw-bg-my-image tw-bg-cover tw-bg-no-repeat tw-bg-[#050F25] ">
         <Providers>
           <AppBar />
           {children}

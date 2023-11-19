@@ -11,5 +11,5 @@ html {
 }
 
 .header-link {
-  @apply hover:text-[#FFFCC7]
+  @apply hover:tw-text-[#FFFCC7]
 }

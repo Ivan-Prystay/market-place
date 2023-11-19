@@ -8,14 +8,17 @@ const SigninButton = () => {
   return (
     <div>
       {session && session.user ? (
-        <div className="flex flex-row gap-2">
-          <p className=" text-orange-400 text-xl">{session.user.name}</p>
-          <button className="text-white text-xl" onClick={() => signOut()}>
+        <div className="tw-flex tw-flex-row tw-gap-2">
+          <p className=" tw-text-orange-400 tw-text-xl">{session.user.name}</p>
+          <button
+            className="tw-text-white tw-text-xl"
+            onClick={() => signOut()}
+          >
             Sign Out
           </button>
         </div>
       ) : (
-        <button className="text-white text-xl" onClick={() => signIn()}>
+        <button className="tw-text-white tw-text-xl" onClick={() => signIn()}>
           Sign In
         </button>
       )}
