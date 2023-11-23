@@ -1,4 +1,6 @@
+
 import type { Config } from 'tailwindcss'
+
 
 const config: Config = {
   prefix: 'tw-',
@@ -10,6 +12,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'accent-color': '#B08450',
+        'grey-input': "#999999"
+      },
       fontFamily: {
         nicomoji: ['var(--font-nicomoji)'],
         nixieone: ['var(--font-nixieone)'],
@@ -23,3 +29,4 @@ const config: Config = {
   plugins: [],
 }
 export default config
+

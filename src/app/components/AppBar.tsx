@@ -5,7 +5,7 @@ import SigninButton from "./SigninButton";
 
 const AppBar = () => {
   return (
-    <header className="tw-flex tw-items-center tw-justify-between tw-h-24 tw-border-b tw-border-white/30 tw-px-20 tw-font-nixieone">
+    <header className="tw-flex tw-items-center tw-justify-center tw-gap-28 tw-h-24 tw-border-b tw-border-white/30 tw-font-nixieone ">
       <Logo />
       <NavBar />
       <SigninButton />

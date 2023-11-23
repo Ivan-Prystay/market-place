@@ -6,10 +6,11 @@
 
 
 html {
-  /* overflow: scroll; */
   overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
 }
 
-.header-link {
-  @apply hover:tw-text-[#FFFCC7]
-}
+/* html {
+  width: 100vw;
+  overflow-x: hidden;
+} */

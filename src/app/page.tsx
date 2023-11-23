@@ -1,50 +1,90 @@
+"use client";
+import React from "react";
 import Image from "next/image";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
 import aboutTarot from "../../public/img/about_tarot.jpg";
 import Link from "next/link";
+import { TextField, InputAdornment, FormControl } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import round from "../../public/img/radial_gradient.png";
+import Specialist from "./components/Inputs/Specialist";
+import Price from "./components/Inputs/Price";
+import Copy from "./components/Inputs/Copy";
+import Copy2 from "./components/Inputs/Copy2";
 
 export default function Page() {
   return (
     <main>
-      <section>
-        <div className="tw-flex tw-flex-col tw-pt-36 tw-items-center">
-          <h1 className="tw-text-[85px] tw-uppercase tw-bg-gradient-to-b tw-from-gray-100 tw-to-transparent tw-text-transparent tw-bg-clip-text tw-font-myanmarmn">
+      <section className="tw-px-20 ">
+        <div className="tw-flex tw-flex-col tw-pt-[170px] tw-items-center ">
+          <h1 className="tw-text-[83px] tw-uppercase tw-bg-gradient-to-b tw-from-gray-100 tw-to-transparent tw-text-transparent tw-bg-clip-text tw-font-myanmarmn">
             Discover Your Destiny:
           </h1>
-          <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-5">
+          <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-[22px]">
             Tarot, Astrology, Numerology
           </h2>
-          <button className="tw-bg-[#FFFCC7] tw-px-8 tw-py-4 tw-text-2xl tw-rounded-xl tw-text-2 tw-mt-[137px] tw-font-nicomoji">
+          <button className="tw-bg-accent-color tw-w-[302px] tw-py-4 tw-text-[24px] tw-rounded-xl tw-text-white tw-mt-[130px] tw-mx-auto tw-capitalize">
             Get started
           </button>
         </div>
-      </section>
-      <section>
+
         {/* **********   Choose your specialist ************/}
-        <div className="tw-ml-20">
-          <div className=" tw-relative">
+        <div className=" tw-mt-[437px]  tw-mx-auto tw-max-w-[1440px]">
+          <div className="tw-relative tw-mt-[120px]">
             <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] ">
               Choose your specialist
             </p>
             <Link
               href={"/services"}
-              className="tw-absolute tw-font-nixieone tw-text-[70px] tw-text-[#BDCAD2] tw-top-[51px] tw-start-[163px] tw-ml-[350px]"
+              className="tw-absolute tw-font-nixieone tw-text-[70px] tw-text-[#BDCAD2] tw-top-[60px] tw-start-[245px]"
             >
               Choose your specialist
             </Link>
-            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-ml-8  tw-relative">
+            <Image
+              src={round}
+              alt="round1"
+              className=" tw-absolute tw-top-10 tw-left-[-105px]"
+            ></Image>
+            <Image
+              src={round}
+              alt="round1"
+              className=" tw-absolute tw-top-[-105px] tw-right-[-90px]"
+            ></Image>
+
+            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-relative">
               <div className="tw-absolute tw-w-[1024px] tw-h-[1px] tw-bg-[#504F66] tw-top-2 tw-left-4"></div>
             </div>
           </div>
 
-          <div>
-            <input className="tw-w-[1280]" type="search" name="" id="" />
-          </div>
-        </div>
-        {/*************  ABOUT ********** US ************* */}
+          {/******************************* FORM *******************************/}
 
-        <div className="tw-ml-20">
+          <FormControl className="tw-mt-[250px] tw-w-[100%]">
+            <TextField
+              id="search"
+              name="search"
+              variant="outlined"
+              placeholder="Search Servise"
+              autoComplete="off"
+              className="tw-bg-grey-input tw-rounded-xl tw-w-[100%]"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "#fff" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10">
+              <Specialist />
+              <Price />
+              <Copy />
+              <Copy2 />
+            </div>
+          </FormControl>
+        </div>
+        <div className=" tw-mt-[500px]">
           <div className="tw-relative">
             <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] tw-ml-[350px]">
               About us
@@ -55,6 +95,7 @@ export default function Page() {
             >
               About us
             </Link>
+
             <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-ml-8  tw-relative">
               <div className="tw-absolute tw-w-[775px] tw-h-[1px] tw-bg-[#504F66] tw-top-2 tw-left-4"></div>
             </div>

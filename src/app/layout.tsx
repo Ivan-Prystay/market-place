@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Nixie_One } from "next/font/google";
+import { Nixie_One, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import Providers from "./components/Providers";
 import AppBar from "./components/AppBar";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const nixeOne = Nixie_One({
   weight: "400",
@@ -36,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nixeOne.variable} ${nicoMoji.variable}   ${myanmarmn.variable}`}
+      className={`${nixeOne.variable} ${nicoMoji.variable} ${myanmarmn.variable} ${inter.className}`}
     >
-      <body className="tw-bg-my-image tw-bg-cover tw-bg-no-repeat tw-bg-[#050F25] ">
+      <body className="tw-bg-my-image tw-bg-no-repeat tw-bg-top tw-bg-[#050F25]">
         <Providers>
           <AppBar />
           {children}
