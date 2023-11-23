@@ -17,6 +17,7 @@ function SpecialistCard() {
         paddingRight: "40px",
         backgroundColor: "transparent",
         border: "solid 1px white",
+        borderRadius: 0,
       }}
     >
       <CardMedia
@@ -25,10 +26,13 @@ function SpecialistCard() {
         image="/img/persons/jesicaP.jpg"
       />
       <CardContent>
-        <Typography variant="body1" color="initial">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          veritatis labore animi fuga quas autem fugit unde saepe rem amet
-          minima quos cum perspiciatis a veniam non, dignissimos nam libero?
+        <Typography variant="body1" color="white">
+          Hello! I'm a tarot reader and numerologist ready to help unravel the
+          mysteries of your life. Order my services, and together we'll harness
+          the magic of tarot cards and numbers to provide you with unique
+          insights and guidance in personal development. Allow the cards and
+          numbers to open new perspectives for you on the path to harmony and
+          success.
         </Typography>
       </CardContent>
     </Card>
