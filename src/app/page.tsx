@@ -12,6 +12,7 @@ import Specialist from "./components/Inputs/Specialist";
 import Price from "./components/Inputs/Price";
 import Copy from "./components/Inputs/Copy";
 import Copy2 from "./components/Inputs/Copy2";
+import SpecialistCard from "./components/SpecialistCard";
 
 export default function Page() {
   return (
@@ -83,7 +84,14 @@ export default function Page() {
               <Copy2 />
             </div>
           </FormControl>
+          {/* *** *** ***  Specialists cards *** *** *** */}
+          <div className=" tw-mt-20">
+            <SpecialistCard />
+          </div>
         </div>
+
+        {/* *** *** ***  About us *** *** *** */}
+
         <div className=" tw-mt-[500px]">
           <div className="tw-relative">
             <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] tw-ml-[350px]">
