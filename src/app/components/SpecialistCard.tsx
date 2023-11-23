@@ -27,12 +27,12 @@ function SpecialistCard() {
       />
       <CardContent>
         <Typography variant="body1" color="white">
-          Hello! I'm a tarot reader and numerologist ready to help unravel the
-          mysteries of your life. Order my services, and together we'll harness
-          the magic of tarot cards and numbers to provide you with unique
-          insights and guidance in personal development. Allow the cards and
-          numbers to open new perspectives for you on the path to harmony and
-          success.
+          Hello! I&apos;m a tarot reader and numerologist ready to help unravel
+          the mysteries of your life. Order my services, and together we&apos;ll
+          harness the magic of tarot cards and numbers to provide you with
+          unique insights and guidance in personal development. Allow the cards
+          and numbers to open new perspectives for you on the path to harmony
+          and success.
         </Typography>
       </CardContent>
     </Card>
