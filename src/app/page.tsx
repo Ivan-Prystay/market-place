@@ -5,7 +5,13 @@ import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
 import aboutTarot from "../../public/img/about_tarot.jpg";
 import Link from "next/link";
-import { TextField, InputAdornment, FormControl } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  FormControl,
+  List,
+  ListItem,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import round from "../../public/img/radial_gradient.png";
 import Specialist from "./components/Inputs/Specialist";
@@ -14,7 +20,10 @@ import Copy from "./components/Inputs/Copy";
 import Copy2 from "./components/Inputs/Copy2";
 import SpecialistCard from "./components/SpecialistCard";
 
-export default function Page() {
+// ************************  DB  ******************
+import specialists from "./db/specialist.json";
+
+export default function Page(): React.ReactNode {
   return (
     <main>
       <section className="tw-px-20 ">
@@ -85,9 +94,14 @@ export default function Page() {
             </div>
           </FormControl>
           {/* *** *** ***  Specialists cards *** *** *** */}
-          <div className=" tw-mt-20">
-            <SpecialistCard />
-          </div>
+
+          <List sx={{ mt: "20px" }}>
+            {specialists.map(specialist => (
+              <ListItem key={specialist.id}>
+                <SpecialistCard specialist={specialist} />
+              </ListItem>
+            ))}
+          </List>
         </div>
 
         {/* *** *** ***  About us *** *** *** */}

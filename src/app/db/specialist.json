@@ -1,0 +1,79 @@
+[
+  {
+    "id": "1",
+    "name": "Jessica P.",
+    "about": {
+      "image": "/img/persons/jessicaP.png",
+      "categories": [
+        "Numerology's",
+        "Tarot"
+      ],
+      "review": {
+        "positiveReview": 69,
+        "allReview": 69
+      },
+      "rating": 5,
+      "price": 100,
+      "diploma": true,
+      "confirmed": true,
+      "description": "Hello! I'm a tarot reader and numerologist ready to help unravel the mysteries of your life. Order my services, and together we'll harness the magic of tarot cards and numbers to provide you with unique insights and guidance in personal development. Allow the cards and numbers to open new perspectives for you on the path to harmony and success."
+    }
+  },
+  {
+    "id": "2",
+    "name": "Melissa B.",
+    "about": {
+      "image": "/img/persons/melisaB.png",
+      "categories": [
+        "Tarot"
+      ],
+      "review": {
+        "positiveReview": 29,
+        "allReview": 29
+      },
+      "rating": 5,
+      "price": 85,
+      "diploma": true,
+      "confirmed": true,
+      "description": "Hello! I'm a tarot reader with extensive experience in unveiling the mysteries of your future. My services are focused on exploring paths to self-discovery and growth. Using ancient tarot cards, I am ready to help you uncover potential opportunities and find answers to your questions. Book a consultation, and together we will unravel the mysteries of your life!"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Laura S.",
+    "about": {
+      "image": "img/persons/lauraS.png",
+      "categories": [
+        "Numerology's"
+      ],
+      "review": {
+        "positiveReview": 31,
+        "allReview": 31
+      },
+      "rating": 4.8,
+      "price": 95,
+      "diploma": true,
+      "confirmed": false,
+      "description": "Welcome! I'm a numerology expert here to reveal the profound meanings behind the numbers shaping your life. Let me guide you to unique insights and help you understand how numbers influence your path. Join me in a journey of discovery for harmony and success."
+    }
+  },
+  {
+    "id": "4",
+    "name": "Kelly M.",
+    "about": {
+      "image": "img/persons/kellyM.png",
+      "categories": [
+        "Astrology's"
+      ],
+      "review": {
+        "positiveReview": 44,
+        "allReview": 44
+      },
+      "rating": 5,
+      "price": 110,
+      "diploma": true,
+      "confirmed": true,
+      "description": "Hello! I'm an astrologer ready to unveil the secrets of your stars and planets. Order my service, and together we'll unlock the keys to your personal and professional development through astrological insights. Let the stars guide you on the path to success and harmony."
+    }
+  }
+]
