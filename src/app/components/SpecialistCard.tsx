@@ -103,9 +103,9 @@ function SpecialistCard({
             )}
           </div>
 
-          <List className="tw-p-0 tw-mt-[10px] tw-space-y-1">
+          <List className="tw-p-0 tw-mt-[20px]">
             {categories.map(category => (
-              <ListItem key={category} className="tw-m-0 tw-py-0">
+              <ListItem key={category} className="tw-my-0 tw-py-0 tw-space-y-0">
                 <ListItemIcon sx={{ marginRight: "-46px" }}>
                   <CircleIcon sx={{ color: "white", fontSize: "6px" }} />
                 </ListItemIcon>
@@ -114,7 +114,7 @@ function SpecialistCard({
             ))}
           </List>
 
-          <div className=" tw-flex tw-flex-row tw-gap-1 tw-mb-2">
+          <div className=" tw-flex tw-flex-row tw-gap-1 tw-mt-4">
             <PermIdentityIcon />
             <Typography>{review.positiveReview} positive review</Typography>
           </div>
@@ -127,7 +127,7 @@ function SpecialistCard({
         <div className="tw-text-end">
           <Link
             className="tw-underline tw-underline-offset-4 tw-font-extralight tw-text-[15px]"
-            href={`/specialists/${id}`}
+            href={"/about"}
           >
             read more
           </Link>
@@ -206,6 +206,7 @@ function SpecialistCard({
               borderRadius: 3,
               textTransform: "lowercase",
               fontSize: 18,
+              backgroundColor: "transparent",
             }}
           >
             message
