@@ -5,7 +5,10 @@ import Providers from "./components/Providers";
 import AppBar from "./components/AppBar";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const nixeOne = Nixie_One({
   weight: "400",
@@ -38,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nixeOne.variable} ${nicoMoji.variable} ${myanmarmn.variable} ${inter.className}`}
+      className={`${nixeOne.variable} ${nicoMoji.variable} ${myanmarmn.variable} ${inter.variable} font-sans`}
     >
       <body className="tw-bg-my-image tw-bg-no-repeat tw-bg-top tw-bg-[#050F25]">
         <Providers>

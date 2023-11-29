@@ -1,28 +1,20 @@
 import React from "react";
-import { FormControl, MenuItem, OutlinedInput } from "@mui/material";
+import { FormControl, Menu, MenuItem, OutlinedInput } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
+const categories = ["Astrology's", "Numerology's", "Tarot"];
 
 function Specialist() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
-  console.log("personName: ", personName);
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const [specialistCategory, setSpecialistCategory] = React.useState<string[]>(
+    []
+  );
+  const handleChange = (
+    event: SelectChangeEvent<typeof specialistCategory>
+  ) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setSpecialistCategory(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
@@ -30,9 +22,11 @@ function Specialist() {
   return (
     <FormControl className="tw-bg-grey-input tw-rounded-xl tw-flex-1">
       <Select
-        // multiple
+        id="changeCategory"
+        name="changeCategory"
+        multiple
         displayEmpty
-        value={personName}
+        value={specialistCategory}
         onChange={handleChange}
         input={<OutlinedInput />}
         renderValue={selected => {
@@ -46,9 +40,9 @@ function Specialist() {
         <MenuItem disabled value="">
           <strong>Specialist</strong>
         </MenuItem>
-        {names.map(name => (
-          <MenuItem key={name} value={name}>
-            {name}
+        {categories.map(category => (
+          <MenuItem key={category} value={category}>
+            {category}
           </MenuItem>
         ))}
       </Select>

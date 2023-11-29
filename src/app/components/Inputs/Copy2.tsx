@@ -17,7 +17,6 @@ const names = [
 
 function Copy2() {
   const [personName, setPersonName] = React.useState<string[]>([]);
-  console.log("Copy2: ", personName);
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
       target: { value },

@@ -14,12 +14,14 @@ const config: Config = {
     extend: {
       colors: {
         'accent-color': '#B08450',
+        'accent-hover': "#402019B8",
         'grey-input': "#999999"
       },
       fontFamily: {
         nicomoji: ['var(--font-nicomoji)'],
         nixieone: ['var(--font-nixieone)'],
-        myanmarmn: ['var(--font-myanmar-mn)']
+        myanmarmn: ['var(--font-myanmar-mn)'],
+        sans: ['var(--font-inter)'],
       },
       backgroundImage: {
         'my-image': "url('../../public/img/background.png')",

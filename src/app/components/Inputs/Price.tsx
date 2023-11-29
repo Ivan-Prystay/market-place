@@ -15,7 +15,6 @@ const prices = [
 
 function Price() {
   const [price, setPrice] = React.useState<string[]>([]);
-  console.log("price: ", price);
 
   const handleChange = (event: SelectChangeEvent<typeof price>) => {
     const {
