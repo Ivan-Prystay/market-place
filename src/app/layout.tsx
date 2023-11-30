@@ -43,7 +43,7 @@ export default function RootLayout({
       lang="en"
       className={`${nixeOne.variable} ${nicoMoji.variable} ${myanmarmn.variable} ${inter.variable} font-sans`}
     >
-      <body className="tw-bg-my-image tw-bg-no-repeat tw-bg-top tw-bg-[#050F25]">
+      <body className="tw-bg-my-image tw-bg-no-repeat tw-bg-top tw-bg-[#050F25] ">
         <Providers>
           <AppBar />
           {children}

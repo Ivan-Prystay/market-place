@@ -95,9 +95,9 @@ export default function Page(): React.ReactNode {
           </FormControl>
           {/* *** *** ***  Specialists cards *** *** *** */}
 
-          <List sx={{ mt: "20px" }}>
+          <List sx={{ mt: 10, p: 0 }} className="tw-space-y-20">
             {specialists.map(specialist => (
-              <ListItem key={specialist.id}>
+              <ListItem key={specialist.id} sx={{ m: 0, p: 0 }}>
                 <SpecialistCard specialist={specialist} />
               </ListItem>
             ))}
