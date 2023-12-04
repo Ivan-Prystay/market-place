@@ -25,6 +25,8 @@ const config: Config = {
       },
       backgroundImage: {
         'my-image': "url('../../public/img/background.png')",
+        'my-logo': "url('../../public/svg/logo.svg')",
+        'my-logo-hover': "url('../../public/svg/logo_hover.svg')",
       },
     },
   },

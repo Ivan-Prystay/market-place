@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import round from "../../public/img/radial_gradient.png";
-import Specialist from "./components/Inputs/Specialist";
+import Categories from "./components/Inputs/Categories";
 import Price from "./components/Inputs/Price";
 import Copy from "./components/Inputs/Copy";
 import Copy2 from "./components/Inputs/Copy2";
@@ -23,7 +23,14 @@ import SpecialistCard from "./components/SpecialistCard";
 // ************************  DB  ******************
 import specialists from "./db/specialist.json";
 
+// type Request = {
+//   categories?: string[];
+//   price?: number[];
+// };
+
 export default function Page(): React.ReactNode {
+  // const [request, setRequest] = useState({});
+
   return (
     <main>
       <section className="tw-px-20 ">
@@ -34,7 +41,10 @@ export default function Page(): React.ReactNode {
           <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-[22px]">
             Tarot, Astrology, Numerology
           </h2>
-          <button className="tw-bg-accent-color tw-w-[302px] tw-py-4 tw-text-[24px] tw-rounded-xl tw-text-white tw-mt-[130px] tw-mx-auto tw-capitalize">
+          <button
+            className="tw-bg-accent-color tw-w-[302px] tw-py-4 tw-text-[24px] tw-rounded-xl tw-text-white tw-mt-[130px] tw-mx-auto tw-capitalize first-letter: tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-bg-accent-hover 
+          "
+          >
             Get started
           </button>
         </div>
@@ -74,7 +84,7 @@ export default function Page(): React.ReactNode {
               id="search"
               name="search"
               variant="outlined"
-              placeholder="Search Servise"
+              placeholder="Search Service"
               autoComplete="off"
               className="tw-bg-grey-input tw-rounded-xl tw-w-[100%]"
               InputProps={{
@@ -85,14 +95,15 @@ export default function Page(): React.ReactNode {
                 ),
               }}
             />
-
-            <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10">
-              <Specialist />
-              <Price />
-              <Copy />
-              <Copy2 />
-            </div>
           </FormControl>
+          <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
+            <Categories />
+            <Price />
+            <Copy />
+            <Copy2 />
+          </div>
+
+          <div></div>
           {/* *** *** ***  Specialists cards *** *** *** */}
 
           <List sx={{ mt: 10, p: 0 }} className="tw-space-y-20">

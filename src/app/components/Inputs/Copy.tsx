@@ -36,14 +36,14 @@ function Copy() {
         input={<OutlinedInput />}
         renderValue={selected => {
           if (selected.length === 0) {
-            return <strong>Copy</strong>;
+            return <b>Copy</b>;
           }
           return selected.join(", ");
         }}
         inputProps={{ "aria-label": "Without label" }}
       >
         <MenuItem disabled value="">
-          <strong>Copy</strong>
+          <b>Copy</b>
         </MenuItem>
         {names.map(name => (
           <MenuItem key={name} value={name}>

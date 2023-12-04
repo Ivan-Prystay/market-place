@@ -29,21 +29,20 @@ function Copy2() {
   return (
     <FormControl className="tw-bg-grey-input tw-rounded-xl tw-flex-1">
       <Select
-        // multiple
         displayEmpty
         value={personName}
         onChange={handleChange}
         input={<OutlinedInput />}
         renderValue={selected => {
           if (selected.length === 0) {
-            return <strong>Copy2</strong>;
+            return <b>Copy2</b>;
           }
           return selected.join(", ");
         }}
         inputProps={{ "aria-label": "Without label" }}
       >
         <MenuItem disabled value="">
-          <strong>Copy2</strong>
+          <b>Copy2</b>
         </MenuItem>
         {names.map(name => (
           <MenuItem key={name} value={name}>
