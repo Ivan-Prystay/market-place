@@ -1,19 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import aboutAstrology from "../../public/img/about_astrology.jpg";
 import aboutNumerology from "../../public/img/about_numerology.jpg";
 import aboutTarot from "../../public/img/about_tarot.jpg";
 import Link from "next/link";
-import {
-  TextField,
-  InputAdornment,
-  FormControl,
-  List,
-  ListItem,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { FormControl, List, ListItem } from "@mui/material";
 import round from "../../public/img/radial_gradient.png";
+import SearchText from "./components/Inputs/SearchText";
 import Categories from "./components/Inputs/Categories";
 import Price from "./components/Inputs/Price";
 import TypeSession from "./components/Inputs/TypeSession";
@@ -29,8 +23,6 @@ import specialists from "./db/specialist.json";
 // };
 
 export default function Page(): React.ReactNode {
-  // const [request, setRequest] = useState({});
-
   return (
     <main>
       <section className="tw-px-20 ">
@@ -80,21 +72,7 @@ export default function Page(): React.ReactNode {
           {/******************************* FORM *******************************/}
 
           <FormControl className="tw-mt-[250px] tw-w-[100%]">
-            <TextField
-              id="search"
-              name="search"
-              variant="outlined"
-              placeholder="Search Service"
-              autoComplete="off"
-              className="tw-bg-[#79839B] tw-rounded-xl tw-w-[100%]"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#fff" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <SearchText />
             <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
               <Categories />
               <Price />
