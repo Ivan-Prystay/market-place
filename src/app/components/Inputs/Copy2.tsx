@@ -29,6 +29,8 @@ function Copy2() {
   return (
     <FormControl className="tw-bg-grey-input tw-rounded-xl tw-flex-1">
       <Select
+        id="copy2"
+        name="copy2"
         displayEmpty
         value={personName}
         onChange={handleChange}

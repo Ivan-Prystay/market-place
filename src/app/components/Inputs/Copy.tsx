@@ -31,6 +31,8 @@ function Copy() {
       <Select
         // multiple
         displayEmpty
+        id="copy"
+        name="copy"
         value={personName}
         onChange={handleChange}
         input={<OutlinedInput />}

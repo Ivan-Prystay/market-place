@@ -22,14 +22,11 @@ const NavBar = () => {
           <li key={index}>
             <Link
               href={link.href}
-              className={
-                `${
-                  pathName === link.href
-                    ? "tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-text-accent-color tw-underline "
-                    : "tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-text-accent-color "
-                }`
-                /* "tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-text-accent-color tw-border-b-2 hover:tw-border-accent-color" */
-              }
+              className={`${
+                pathName === link.href
+                  ? "tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-text-accent-color tw-underline "
+                  : "tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-text-accent-color "
+              }`}
             >
               {link.label}
             </Link>

@@ -3,11 +3,28 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
-import MuiInput from "@mui/material/Input";
 import styled from "@emotion/styled";
+import { Icon } from "@mui/material";
 
-const Input = styled(MuiInput)`
-  width: 42px;
+//* Icons ;
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+
+const Input = styled.input`
+  width: 56px;
+  height: 32px;
+  padding: 4px 0 4px 12px;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  outline: none;
+
+  //? Hide spin-buttons */
+  /* -moz-appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  } */
 `;
 
 const CustomSliderStyles = {
@@ -44,7 +61,7 @@ const CustomSliderStyles = {
     color: "black",
   },
 };
-
+const minDistance = 50;
 const marks = [
   {
     value: 0,
@@ -76,12 +93,46 @@ function valuetext(value: number) {
 }
 
 export default function Price() {
-  const [price, setPrice] = React.useState([40, 170]);
+  const [price, setPrice] = React.useState([0, 400]);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   console.log("price: ", price);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setPrice(newValue as number[]);
+  const toggleClick = (e: MouseEvent) => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleEscapeKeyPress = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (!(e.target as HTMLElement).closest(".my-open-slider")) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleChange = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+    if (newValue[1] - newValue[0] < minDistance) {
+      if (activeThumb === 0) {
+        const clamped = Math.min(newValue[0], 400 - minDistance);
+        setPrice([clamped, clamped + minDistance]);
+      } else {
+        const clamped = Math.max(newValue[1], minDistance);
+        setPrice([clamped - minDistance, clamped]);
+      }
+    } else {
+      setPrice(newValue as number[]);
+    }
   };
 
   const handleInputChange = (
@@ -95,69 +146,124 @@ export default function Price() {
       const newValues = [...price];
       newValues[index] = value;
       setPrice(newValues);
+
+      if (newValues[0] === newValues[1]) {
+        newValues[1] = newValues[1] + 10;
+        newValues[0] = newValues[0] - 10;
+      }
+
+      if (newValues[1] < 10) {
+        newValues[1] = 10;
+      }
+
+      if (newValues[0] > newValues[1]) {
+        newValues[0] = newValues[1] - 10;
+      }
+
+      if (newValues[index] > 400) {
+        newValues[index] = 400;
+      }
     }
   };
 
+  React.useEffect(() => {
+    document.addEventListener("keydown", handleEscapeKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKeyPress);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isOpen]);
+
   return (
-    <Box className="tw-flex-1">
+    <Box className="tw-flex-1 tw-relative">
       <Box
+        onClick={e => toggleClick((e as unknown) as MouseEvent)}
         sx={{
+          display: "flex",
           width: "100%",
           height: 56,
           backgroundColor: "#79839B",
           pl: "14px",
+          pr: "8px",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <Typography
           id="double-input-slider"
-          sx={{ color: "#fff" }}
+          sx={{ color: "#fff", margin: 0 }}
           gutterBottom
         >
-          Price
+          Price {price[0]} - {price[1]} $
         </Typography>
+        {!isOpen ? (
+          <ArrowDropDownIcon sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+        ) : (
+          <ArrowDropUpIcon sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+        )}
       </Box>
-      <Box className="tw-bg-white tw-rounded-xl tw-py-1 tw-px-2 tw-mt-1 ">
-        {/* //** tw-hidden  */}
+
+      <Box
+        className="tw-bg-white tw-mt-1 tw-rounded-[2px] my-open-slider tw-absolute"
+        sx={{ display: isOpen ? "block" : "none", width: "100%" }}
+      >
         <Grid container rowGap={1}>
           <Box
             sx={{
               display: "flex",
               flexGrow: 1,
               justifyContent: "space-between",
+              backgroundColor: "#F5F5F5",
+              padding: "4px 24px 0",
+              borderTopRightRadius: "2px",
+              borderTopLeftRadius: "2px",
             }}
           >
             <Grid item>
-              <Typography id="min-value-label">Min:</Typography>
               <Input
                 value={price[0]}
                 id="min"
                 onChange={e => handleInputChange(e, 0)}
-                inputProps={{
-                  step: 5,
-                  min: 0,
-                  max: 400,
-                  type: "number",
-                  "aria-labelledby": "min-value-label",
-                }}
+                step={10}
+                min={0}
+                max={390}
+                aria-label="min-value-label"
+                type={"number"}
+                inputMode={"numeric"}
               />
             </Grid>
+
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <div className=" tw-w-6 tw-h-[1px] tw-bg-black"></div>
+            </Grid>
+
             <Grid item>
-              <Typography id="max-value-label">Max:</Typography>
               <Input
                 value={price[1]}
                 id="max"
                 onChange={e => handleInputChange(e, 1)}
-                inputProps={{
-                  step: 5,
-                  min: 10,
-                  max: 400,
-                  type: "number",
-                  "aria-labelledby": "max-value-label",
-                }}
+                type={"number"}
+                inputMode={"numeric"}
+                step={10}
+                min={10}
+                max={400}
+                aria-label="max-value-label"
               />
             </Grid>
           </Box>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ padding: "0 20px", fontSize: "14px" }}>
             <Slider
               sx={CustomSliderStyles}
               className="tw-text-accent-color"
@@ -170,6 +276,7 @@ export default function Price() {
               aria-labelledby="double-input-slider"
               valueLabelDisplay="off"
               getAriaValueText={valuetext}
+              disableSwap
             />
           </Grid>
         </Grid>
@@ -177,90 +284,3 @@ export default function Price() {
     </Box>
   );
 }
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Slider from "@mui/material/Slider";
-// import { FormControl } from "@mui/material";
-
-// function valuetext(value: number) {
-//   return `${value} $`;
-// }
-// function Price() {
-//   const [value, setValue] = React.useState<number[]>([90, 240]);
-
-//   const handleChange = (event: Event, newValue: number | number[]) => {
-//     setValue(newValue as number[]);
-//   };
-
-//   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const { name, value } = event.target;
-
-//     setValue(prevValues => ({
-//       ...prevValues,
-//       [name]: parseInt(value) || 0,
-//     }));
-//   };
-
-//   const marks = [
-//     {
-//       value: 50,
-//       label: "50$",
-//     },
-
-//     {
-//       value: 150,
-//       label: "150$",
-//     },
-
-//     {
-//       value: 250,
-//       label: "250$",
-//     },
-
-//     {
-//       value: 350,
-//       label: "350$",
-//     },
-//   ];
-
-//   return (
-//     <FormControl className="tw-bg-grey-input tw-rounded-xl tw-flex-1">
-//       <Box sx={{ width: "100%" }}>
-//         <div className="tw-flex tw-justify-between tw-flex-1">
-//           <input
-//             type="number"
-//             name="0"
-//             min={0}
-//             max={400}
-//             step={5}
-//             onChange={handleInputChange}
-//             value={value[0]}
-//             className="tw-p-1 tw-border-black tw-border-solid tw-border-2 tw-w-12"
-//           ></input>
-//           <input
-//             name="1"
-//             min={0}
-//             max={400}
-//             step={5}
-//             onChange={handleInputChange}
-//             value={value[1]}
-//             className="tw-p-1 tw-border-black tw-border-solid tw-border-2 tw-w-9"
-//           ></input>
-//         </div>
-//         <Slider
-//           getAriaLabel={() => "Price"}
-//           value={value}
-//           min={0}
-//           step={5}
-//           marks={marks}
-//           max={400}
-//           onChange={handleChange}
-//           valueLabelDisplay="off"
-//           getAriaValueText={valuetext}
-//         />
-//       </Box>
-//     </FormControl>
-//   );
-// }
-
-// export default Price;

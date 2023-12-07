@@ -95,13 +95,13 @@ export default function Page(): React.ReactNode {
                 ),
               }}
             />
+            <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
+              <Categories />
+              <Price />
+              <Copy />
+              <Copy2 />
+            </div>
           </FormControl>
-          <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
-            <Categories />
-            <Price />
-            <Copy />
-            <Copy2 />
-          </div>
 
           <div></div>
           {/* *** *** ***  Specialists cards *** *** *** */}
