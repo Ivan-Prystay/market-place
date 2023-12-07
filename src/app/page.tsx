@@ -16,8 +16,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import round from "../../public/img/radial_gradient.png";
 import Categories from "./components/Inputs/Categories";
 import Price from "./components/Inputs/Price";
-import Copy from "./components/Inputs/Copy";
-import Copy2 from "./components/Inputs/Copy2";
+import TypeSession from "./components/Inputs/TypeSession";
+import SortBy from "./components/Inputs/SortBy";
 import SpecialistCard from "./components/SpecialistCard";
 
 // ************************  DB  ******************
@@ -86,7 +86,7 @@ export default function Page(): React.ReactNode {
               variant="outlined"
               placeholder="Search Service"
               autoComplete="off"
-              className="tw-bg-grey-input tw-rounded-xl tw-w-[100%]"
+              className="tw-bg-[#79839B] tw-rounded-xl tw-w-[100%]"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -98,8 +98,8 @@ export default function Page(): React.ReactNode {
             <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
               <Categories />
               <Price />
-              <Copy />
-              <Copy2 />
+              <TypeSession />
+              <SortBy />
             </div>
           </FormControl>
 

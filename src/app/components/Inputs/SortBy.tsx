@@ -4,7 +4,7 @@ import Autocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
 } from "@mui/material/Autocomplete";
-import { Chip, FormControl } from "@mui/material";
+import { FormControl } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -21,33 +21,36 @@ const theme = createTheme({
   },
 });
 
-const categories = ["Astrology's", "Numerology's", "Tarot"];
+const sortParameters = [
+  "Price: highest first",
+  "Price: lowest first",
+  "Numbers of reviews",
+  "Best rating",
+  "Newest advertisement",
+  "Available now",
+];
 
-function Categories() {
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
-  console.log("selectedCategory: ", selectedCategory);
+function SortBy() {
+  const [sortParam, setSortParam] = useState<string | null>(null);
+  console.log("sortParam: ", sortParam);
 
   const handleChange = (
     event: React.SyntheticEvent<Element, Event>,
-    newValue: string[],
+    newValue: string | null,
     reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<string> | undefined
+    details: AutocompleteChangeDetails<string> | undefined
   ) => {
-    setSelectedCategory(newValue);
+    setSortParam(newValue);
   };
 
   return (
-    <FormControl className="tw-rounded-xl tw-flex-1 ">
+    <FormControl className="tw-rounded-xl tw-flex-1">
       <ThemeProvider theme={theme}>
         <Autocomplete
-          limitTags={1}
-          multiple
           sx={{ border: "none", backgroundColor: "#79839B" }}
           disablePortal
-          id="change-categories-specialist"
-          options={categories}
-          // filterSelectedOptions
-          value={selectedCategory}
+          id="change-sort-by"
+          options={sortParameters}
           onChange={handleChange}
           renderOption={(props, option) => {
             return (
@@ -56,15 +59,10 @@ function Categories() {
               </li>
             );
           }}
-          renderTags={(tagValue, getTagProps) => {
-            return tagValue.map((option, index) => (
-              <Chip {...getTagProps({ index })} key={option} label={option} />
-            ));
-          }}
           renderInput={params => (
             <TextField
               {...params}
-              placeholder="Categories"
+              placeholder="Sort by:"
               sx={{
                 "& .MuiInputBase-input::placeholder": {
                   opacity: 1,
@@ -78,4 +76,4 @@ function Categories() {
     </FormControl>
   );
 }
-export default Categories;
+export default SortBy;
