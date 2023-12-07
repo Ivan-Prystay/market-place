@@ -9,8 +9,44 @@ html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
   font-family: var(--font-inter);
+  margin-right: calc(-1 * (100vw - 100%));
 }
 
 body {
   padding: 0 !important;
+}
+
+
+
+.card {
+  position: relative;
+
+}
+
+.card__front {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  backface-visibility: hidden;
+  transition: transform 2s cubic-bezier(.2, .85, .4, 1.275);
+}
+
+.card__back {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  transition: transform 2s cubic-bezier(.2, .85, .4, 1.275);
+}
+
+.card:hover .card__back {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.card:hover .card__front {
+  transform: rotateY(180deg);
+  z-index: -1;
 }

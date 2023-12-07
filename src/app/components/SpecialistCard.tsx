@@ -195,7 +195,11 @@ function SpecialistCard({
           <Button
             className="tw-bg-accent-color hover:tw-bg-accent-hover tw-py-[18px] hover:tw-py-[17px] hover:tw-border-solid hover:tw-border-accent-color hover:tw-border-[1px] tw-box-border"
             variant="contained"
-            sx={{ borderRadius: 3, textTransform: "lowercase", fontSize: 18 }}
+            sx={{
+              borderRadius: "2px",
+              textTransform: "lowercase",
+              fontSize: 18,
+            }}
           >
             make appointment
           </Button>
@@ -203,7 +207,7 @@ function SpecialistCard({
             className="tw-py-[17px] hover:tw-bg-accent-hover hover:tw-border-solid tw-border-solid tw-border-[1px] hover:tw-border-accent-color tw-border-accent-color hover:tw-border-[1px]"
             variant="contained"
             sx={{
-              borderRadius: 3,
+              borderRadius: "2px",
               textTransform: "lowercase",
               fontSize: 18,
               backgroundColor: "transparent",

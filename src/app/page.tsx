@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import aboutAstrology from "../../public/img/about_astrology.jpg";
-import aboutNumerology from "../../public/img/about_numerology.jpg";
-import aboutTarot from "../../public/img/about_tarot.jpg";
+import aboutAstrology from "../../public/img/astrology_card.png";
+import aboutNumerology from "../../public/img/numerology_card.png";
+import aboutTarot from "../../public/img/tarot_card.png";
 import Link from "next/link";
-import { FormControl, List, ListItem } from "@mui/material";
+import { Button, FormControl, List, ListItem } from "@mui/material";
 import round from "../../public/img/radial_gradient.png";
 import SearchText from "./components/Inputs/SearchText";
 import Categories from "./components/Inputs/Categories";
@@ -13,6 +13,8 @@ import Price from "./components/Inputs/Price";
 import TypeSession from "./components/Inputs/TypeSession";
 import SortBy from "./components/Inputs/SortBy";
 import SpecialistCard from "./components/SpecialistCard";
+import SearchIcon from "@mui/icons-material/Search";
+import ChipsArray from "./components/Inputs/ChipArray";
 
 // ************************  DB  ******************
 import specialists from "./db/specialist.json";
@@ -33,12 +35,9 @@ export default function Page(): React.ReactNode {
           <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-[22px]">
             Tarot, Astrology, Numerology
           </h2>
-          <button
-            className="tw-bg-accent-color tw-w-[302px] tw-py-4 tw-text-[24px] tw-rounded-xl tw-text-white tw-mt-[130px] tw-mx-auto tw-capitalize first-letter: tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-bg-accent-hover 
-          "
-          >
+          <Button className="tw-bg-accent-color hover:tw-bg-accent-hover tw-w-[302px] tw-py-[18px] hover:tw-py-[17px] tw-text-[24px] tw-rounded-[2px] tw-text-white tw-mt-[110px] tw-mx-auto tw-capitalize first-letter:tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-border-solid hover:tw-border-accent-color hover:tw-border-[1px] tw-box-border">
             Get started
-          </button>
+          </Button>
         </div>
 
         {/* **********   Choose your specialist ************/}
@@ -71,17 +70,22 @@ export default function Page(): React.ReactNode {
 
           {/******************************* FORM *******************************/}
 
-          <FormControl className="tw-mt-[250px] tw-w-[100%]">
+          <FormControl className="tw-mt-[250px] tw-w-[100%] tw-relative">
             <SearchText />
-            <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent">
+            <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent ">
               <Categories />
               <Price />
               <TypeSession />
               <SortBy />
             </div>
+
+            <ChipsArray />
+            <Button className="tw-bg-accent-color hover:tw-bg-accent-hover tw-py-[7px] tw-px-12 tw-text-[18px] tw-rounded-[2px] tw-text-white tw-mt-[276px] tw-capitalize first-letter:tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear tw-border-solid tw-border-white tw-border-[1px] hover:tw-border-accent-color tw-box-border tw-mx-auto">
+              <SearchIcon sx={{ mr: "20px" }} />
+              Search
+            </Button>
           </FormControl>
 
-          <div></div>
           {/* *** *** ***  Specialists cards *** *** *** */}
 
           <List sx={{ mt: 10, p: 0 }} className="tw-space-y-20">
@@ -95,7 +99,7 @@ export default function Page(): React.ReactNode {
 
         {/* *** *** ***  About us *** *** *** */}
 
-        <div className=" tw-mt-[500px]">
+        <div className=" tw-mt-[120px]">
           <div className="tw-relative">
             <p className="tw-font-nixieone tw-text-[90px] tw-text-[#BDCAD233] tw-blur-[2px] tw-ml-[350px]">
               About us
@@ -106,49 +110,91 @@ export default function Page(): React.ReactNode {
             >
               About us
             </Link>
-
-            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#504F66] tw-ml-8  tw-relative">
+            <div className="tw-w-4 tw-h-4 tw-rounded-full tw-bg-[#b4b1f2] tw-ml-8  tw-relative">
               <div className="tw-absolute tw-w-[775px] tw-h-[1px] tw-bg-[#504F66] tw-top-2 tw-left-4"></div>
             </div>
           </div>
         </div>
-        <div className="tw-mt-24">
-          <ul className="tw-flex tw-flex-row tw-text-xl tw-text-[#3A475C]">
-            <li>
-              <Image src={aboutAstrology} width={409} alt="Astrology"></Image>
-              <h3>Astrology</h3>
-              <p>
-                Is a service that helps you uncover and understand the influence
-                of planets and stars on your life. Our astrologers analyse your
-                astrological chart, identifying your strengths and weaknesses,
-                and provide valuable insights to better understand yourself,
-                your relationships, and your life path. Astrology assists you in
-                making informed decisions and finding harmony in your life.
-              </p>
+        <div className="tw-my-20">
+          <ul className="tw-flex tw-flex-row tw-text-xl tw-text-[#3A475C] tw-justify-between">
+            <li className="tw-flex-1 tw-text-center">
+              <div className="card tw-mb-5">
+                <div className="card__front">
+                  <Image
+                    src={aboutAstrology}
+                    width={405}
+                    alt="Astrology"
+                  ></Image>
+                </div>
+                <div className="card__back">
+                  <p>
+                    Is a service that helps you uncover and understand the
+                    influence of planets and stars on your life. Our astrologers
+                    analyse your astrological chart, identifying your strengths
+                    and weaknesses, and provide valuable insights to better
+                    understand yourself, your relationships, and your life path.
+                    Astrology assists you in making informed decisions and
+                    finding harmony in your life.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={"/about"}
+                className="tw-text-[#FFFCC7] tw-font-nixieone tw-text-[40px] tw-underline "
+              >
+                Astrology
+              </Link>
             </li>
-            <li>
-              <Image src={aboutNumerology} width={409} alt="Numerology"></Image>
-              <h3>Numerology</h3>
-              <p>
-                Is a service that is based on the study of numbers and their
-                influence on your life. Numerologists analyse your name and
-                birthdate, revealing deep insights into your personality,
-                talents, and life path. They provide you with insights and
-                recommendations for achieving harmony and success, using numbers
-                as a tool for self-discovery and personal growth.
-              </p>
+            <li className="tw-flex-1 tw-text-center">
+              <div className="card tw-mb-5">
+                <div className="card__front">
+                  <Image
+                    src={aboutNumerology}
+                    width={405}
+                    alt="Numerology"
+                  ></Image>
+                </div>
+                <div className="card__back">
+                  <p>
+                    Is a service that is based on the study of numbers and their
+                    influence on your life. Numerologists analyse your name and
+                    birthdate, revealing deep insights into your personality,
+                    talents, and life path. They provide you with insights and
+                    recommendations for achieving harmony and success, using
+                    numbers as a tool for self-discovery and personal growth.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={"/about"}
+                className="tw-text-[#FFFCC7] tw-font-nixieone tw-text-[40px] tw-underline"
+              >
+                Numerology
+              </Link>
             </li>
-            <li>
-              <Image src={aboutTarot} width={409} alt="Tarot"></Image>
-              <h3>Tarot</h3>
-              <p>
-                Is a service that utilises tarot cards to explore your life and
-                future. Our tarot readers help you find answers to your
-                questions by interpreting the symbolism of each card and their
-                relationships. They provide you with valuable insights and
-                guidance so you can make informed decisions, unlock your
-                potential, and discover your path to inner harmony and success.
-              </p>
+            <li className="tw-flex-1 tw-text-center">
+              <div className="card tw-mb-5">
+                <div className="card__front">
+                  <Image src={aboutTarot} width={405} alt="Tarot"></Image>
+                </div>
+                <div className="card__back">
+                  <p>
+                    Is a service that utilises tarot cards to explore your life
+                    and future. Our tarot readers help you find answers to your
+                    questions by interpreting the symbolism of each card and
+                    their relationships. They provide you with valuable insights
+                    and guidance so you can make informed decisions, unlock your
+                    potential, and discover your path to inner harmony and
+                    success.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={"/about"}
+                className="tw-text-[#FFFCC7] tw-font-nixieone tw-text-[40px] tw-underline"
+              >
+                Tarot
+              </Link>
             </li>
           </ul>
         </div>
