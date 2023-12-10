@@ -13,10 +13,13 @@ const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-// ChipsArray.tsx
-
 const ChipsArray: React.FC<ComponentProps> = ({ chipData, handleDelete }) => {
   const [chips, setChips] = React.useState(chipData);
+
+  React.useEffect(() => {
+    setChips(chipData);
+  }, [chipData]);
+  console.log("chips: ", chips);
 
   return (
     <Paper
@@ -32,16 +35,16 @@ const ChipsArray: React.FC<ComponentProps> = ({ chipData, handleDelete }) => {
       }}
       component="ul"
     >
-      {chips.map(data => {
+      {chips.map(chip => {
         return (
-          <ListItem key={data.key}>
+          <ListItem key={chip.key}>
             <Chip
               sx={{ backgroundColor: "white", borderRadius: "2px" }}
-              label={data.label}
+              label={chip.label}
               onDelete={() => {
-                handleDelete(data);
-                setChips(chips.filter(d => d !== data));
-              }} // Update state after deleting chip
+                handleDelete(chip);
+                setChips(chips.filter(d => d !== chip));
+              }}
             />
           </ListItem>
         );

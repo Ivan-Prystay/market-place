@@ -18,8 +18,7 @@ export default function SearchText({
   };
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: string = event.target.value;
-    setValue(newValue);
-    handleSearchText(newValue);
+    setTimeout(() => (setValue(newValue), handleSearchText(newValue)), 50);
   };
 
   return (

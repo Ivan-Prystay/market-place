@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import aboutAstrology from "../../public/img/astrology_card.png";
 import aboutNumerology from "../../public/img/numerology_card.png";
@@ -26,19 +26,16 @@ export interface ChipData {
 
 export default function Page(): React.ReactNode {
   const [searchText, setSearchText] = useState("");
-  console.log("searchText: ", searchText);
   const handleSearchText = (text: string) => {
     setSearchText(text);
   };
 
   const [changeCategories, setChangeCategories] = useState<string[]>([]);
-  console.log("changeCategories: ", changeCategories);
   const handleChangeCategories = (categories: string[]) => {
     setChangeCategories(categories);
   };
 
   const [changePrise, setChangePrice] = useState<number[]>([0, 400]);
-  console.log("changePrise: ", changePrise);
   const handleChangePrice = (price: number[]) => {
     setChangePrice(price);
   };
@@ -46,40 +43,47 @@ export default function Page(): React.ReactNode {
   const [changeTypeSession, setChangeTypeSession] = useState<string | null>(
     null
   );
-  console.log("changeTypeSession: ", changeTypeSession);
-
   const handleChangeTypeSession = (typeSession: string | null) => {
     setChangeTypeSession(typeSession);
   };
 
   const [changeSortBy, setChangeSortBy] = useState<string | null>(null);
-  console.log("changeSortBy: ", changeSortBy);
-
   const handleChangeSortBy = (sortName: string | null) => {
     setChangeSortBy(sortName);
   };
 
-  const [chipData, setChipData] = React.useState<ChipData[]>([
-    { key: 0, label: "Numerology's" },
-    { key: 1, label: "Astrology's" },
-    { key: 2, label: "Tarot" },
-    { key: 3, label: "On-line" },
-    { key: 4, label: "Price: lowest first" },
-    { key: 5, label: "200 - 350$" },
-  ]);
+  const [chipData, setChipData] = React.useState<ChipData[]>([]);
 
-  const formattedChipData = [
-    { key: 0, label: searchText },
-    // Format category as individual chips
-    ...changeCategories.map((cat, index) => ({ key: index + 1, label: cat })),
-    // Format price as a range
-    {
-      key: changeCategories.length + 1,
-      label: `${changePrise[0]} - ${changePrise[1]}`,
-    },
-    { key: changeCategories.length + 2, label: changeTypeSession },
-    { key: changeCategories.length + 3, label: changeSortBy },
-  ];
+  useEffect(() => {
+    const collectInputData = () => {
+      let data: ChipData[] = [];
+      if (searchText) data.push({ key: data.length, label: searchText });
+      if (changeTypeSession)
+        data.push({ key: data.length, label: changeTypeSession });
+      if (changeSortBy) data.push({ key: data.length, label: changeSortBy });
+
+      changeCategories.forEach((cat, index) => {
+        data.push({ key: data.length, label: cat });
+      });
+
+      if (changePrise.length === 2) {
+        data.push({
+          key: data.length,
+          label: `${changePrise[0]} - ${changePrise[1]} $`,
+        });
+      }
+
+      setChipData(data);
+    };
+
+    collectInputData();
+  }, [
+    searchText,
+    changeTypeSession,
+    changeSortBy,
+    changePrise,
+    changeCategories,
+  ]);
 
   const handleDelete = (chipToDelete: ChipData) => () => {
     setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
@@ -201,7 +205,7 @@ export default function Page(): React.ReactNode {
               </div>
               <Link
                 href={"/about"}
-                className="tw-text-[#FFFCC7] tw-font-nixieone tw-text-[40px] tw-underline "
+                className="tw-text-[#FFFCC7] tw-font-nixieone tw-text-[40px] tw-underline"
               >
                 Astrology
               </Link>
@@ -263,3 +267,21 @@ export default function Page(): React.ReactNode {
     </main>
   );
 }
+
+/*
+
+ const formattedChipData = [
+    { key: 0, label: searchText },
+    // Format category as individual chips
+    ...changeCategories.map((cat, index) => ({ key: index + 1, label: cat })),
+    // Format price as a range
+    {
+      key: changeCategories.length + 1,
+      label: `${changePrise[0]} - ${changePrise[1]}`,
+    },
+    { key: changeCategories.length + 2, label: changeTypeSession },
+    { key: changeCategories.length + 3, label: changeSortBy },
+  ];
+
+
+*/
