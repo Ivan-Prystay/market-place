@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
 import styled from "@emotion/styled";
-import { Icon } from "@mui/material";
 
 //* Icons ;
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -92,11 +91,13 @@ function valuetext(value: number) {
   return `${value} $`;
 }
 
-export default function Price() {
+export default function Price({
+  handleChangePrice,
+}: {
+  handleChangePrice: (price: number[]) => void;
+}) {
   const [price, setPrice] = React.useState([0, 400]);
   const [isOpen, setIsOpen] = React.useState(false);
-
-  console.log("price: ", price);
 
   const toggleClick = (e: MouseEvent) => {
     setIsOpen(!isOpen);
@@ -160,6 +161,9 @@ export default function Price() {
         newValues[0] = newValues[1] - 10;
       }
 
+      if (newValues[0] < 0) {
+        newValues[0] = 0;
+      }
       if (newValues[index] > 400) {
         newValues[index] = 400;
       }
@@ -167,11 +171,15 @@ export default function Price() {
   };
 
   React.useEffect(() => {
+    handleChangePrice(price);
+  });
+
+  React.useEffect(() => {
     document.addEventListener("keydown", handleEscapeKeyPress);
     return () => {
       document.removeEventListener("keydown", handleEscapeKeyPress);
     };
-  }, []);
+  }, [isOpen]);
 
   React.useEffect(() => {
     document.addEventListener("click", handleClickOutside);

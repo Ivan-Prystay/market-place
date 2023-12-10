@@ -19,12 +19,72 @@ import ChipsArray from "./components/Inputs/ChipArray";
 // ************************  DB  ******************
 import specialists from "./db/specialist.json";
 
-// type Request = {
-//   categories?: string[];
-//   price?: number[];
-// };
+export interface ChipData {
+  key: number;
+  label: string;
+}
 
 export default function Page(): React.ReactNode {
+  const [searchText, setSearchText] = useState("");
+  console.log("searchText: ", searchText);
+  const handleSearchText = (text: string) => {
+    setSearchText(text);
+  };
+
+  const [changeCategories, setChangeCategories] = useState<string[]>([]);
+  console.log("changeCategories: ", changeCategories);
+  const handleChangeCategories = (categories: string[]) => {
+    setChangeCategories(categories);
+  };
+
+  const [changePrise, setChangePrice] = useState<number[]>([0, 400]);
+  console.log("changePrise: ", changePrise);
+  const handleChangePrice = (price: number[]) => {
+    setChangePrice(price);
+  };
+
+  const [changeTypeSession, setChangeTypeSession] = useState<string | null>(
+    null
+  );
+  console.log("changeTypeSession: ", changeTypeSession);
+
+  const handleChangeTypeSession = (typeSession: string | null) => {
+    setChangeTypeSession(typeSession);
+  };
+
+  const [changeSortBy, setChangeSortBy] = useState<string | null>(null);
+  console.log("changeSortBy: ", changeSortBy);
+
+  const handleChangeSortBy = (sortName: string | null) => {
+    setChangeSortBy(sortName);
+  };
+
+  const [chipData, setChipData] = React.useState<ChipData[]>([
+    { key: 0, label: "Numerology's" },
+    { key: 1, label: "Astrology's" },
+    { key: 2, label: "Tarot" },
+    { key: 3, label: "On-line" },
+    { key: 4, label: "Price: lowest first" },
+    { key: 5, label: "200 - 350$" },
+  ]);
+
+  const formattedChipData = [
+    { key: 0, label: searchText },
+    // Format category as individual chips
+    ...changeCategories.map((cat, index) => ({ key: index + 1, label: cat })),
+    // Format price as a range
+    {
+      key: changeCategories.length + 1,
+      label: `${changePrise[0]} - ${changePrise[1]}`,
+    },
+    { key: changeCategories.length + 2, label: changeTypeSession },
+    { key: changeCategories.length + 3, label: changeSortBy },
+  ];
+
+  const handleDelete = (chipToDelete: ChipData) => () => {
+    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+  };
+
   return (
     <main>
       <section className="tw-px-20 ">
@@ -35,7 +95,7 @@ export default function Page(): React.ReactNode {
           <h2 className="tw-text-[#BDCAD2] tw-text-[70px] tw-font-nixieone tw-mt-[22px]">
             Tarot, Astrology, Numerology
           </h2>
-          <Button className="tw-bg-accent-color hover:tw-bg-accent-hover tw-w-[302px] tw-py-[18px] hover:tw-py-[17px] tw-text-[24px] tw-rounded-[2px] tw-text-white tw-mt-[110px] tw-mx-auto tw-capitalize first-letter:tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-border-solid hover:tw-border-accent-color hover:tw-border-[1px] tw-box-border">
+          <Button className="tw-px-[86px] hover:tw-px-[85px] tw-py-[13px] hover:tw-py-[12px] tw-bg-accent-color hover:tw-bg-accent-hover  tw-text-[24px] tw-rounded-[2px] tw-text-white tw-mt-[116px] tw-mx-auto tw-capitalize first-letter:tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear hover:tw-border-solid hover:tw-border-accent-color hover:tw-border-[1px] tw-leading-normal">
             Get started
           </Button>
         </div>
@@ -71,15 +131,16 @@ export default function Page(): React.ReactNode {
           {/******************************* FORM *******************************/}
 
           <FormControl className="tw-mt-[250px] tw-w-[100%] tw-relative">
-            <SearchText />
+            <SearchText handleSearchText={handleSearchText} />
             <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent ">
-              <Categories />
-              <Price />
-              <TypeSession />
-              <SortBy />
+              <Categories handleChangeCategories={handleChangeCategories} />
+              <Price handleChangePrice={handleChangePrice} />
+              <TypeSession handleChangeTypeSession={handleChangeTypeSession} />
+              <SortBy handleChangeSortBy={handleChangeSortBy} />
             </div>
 
-            <ChipsArray />
+            <ChipsArray chipData={chipData} handleDelete={handleDelete} />
+
             <Button className="tw-bg-accent-color hover:tw-bg-accent-hover tw-py-[7px] tw-px-12 tw-text-[18px] tw-rounded-[2px] tw-text-white tw-mt-[276px] tw-capitalize first-letter:tw-ease-linear tw-duration-700 hover:tw-duration-300 hover:tw-ease-linear tw-border-solid tw-border-white tw-border-[1px] hover:tw-border-accent-color tw-box-border tw-mx-auto">
               <SearchIcon sx={{ mr: "20px" }} />
               Search

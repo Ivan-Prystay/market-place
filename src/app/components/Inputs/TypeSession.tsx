@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, {
   AutocompleteChangeDetails,
@@ -23,7 +23,11 @@ const theme = createTheme({
 
 const typesSession = ["On-line", "Off-line"];
 
-function TypeSession() {
+function TypeSession({
+  handleChangeTypeSession,
+}: {
+  handleChangeTypeSession: (typeSession: string | null) => void;
+}) {
   const [typeSession, setTypeSession] = useState<string | null>(null);
 
   const handleChange = (
@@ -34,6 +38,10 @@ function TypeSession() {
   ) => {
     setTypeSession(newValue);
   };
+
+  React.useEffect(() => {
+    handleChangeTypeSession(typeSession);
+  });
 
   return (
     <FormControl className="tw-rounded-xl tw-flex-1 ">

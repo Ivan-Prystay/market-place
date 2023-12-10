@@ -30,9 +30,12 @@ const sortParameters = [
   "Available now",
 ];
 
-function SortBy() {
+function SortBy({
+  handleChangeSortBy,
+}: {
+  handleChangeSortBy: (nameSort: string | null) => void;
+}) {
   const [sortParam, setSortParam] = useState<string | null>(null);
-  console.log("sortParam: ", sortParam);
 
   const handleChange = (
     event: React.SyntheticEvent<Element, Event>,
@@ -41,7 +44,12 @@ function SortBy() {
     details: AutocompleteChangeDetails<string> | undefined
   ) => {
     setSortParam(newValue);
+    handleChangeSortBy(newValue);
   };
+
+  React.useEffect(() => {
+    handleChangeSortBy(sortParam);
+  });
 
   return (
     <FormControl className="tw-rounded-xl tw-flex-1">

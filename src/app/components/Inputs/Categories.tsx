@@ -23,9 +23,12 @@ const theme = createTheme({
 
 const categories = ["Astrology's", "Numerology's", "Tarot"];
 
-function Categories() {
+function Categories({
+  handleChangeCategories,
+}: {
+  handleChangeCategories: (categories: string[]) => void;
+}) {
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
-  console.log("selectedCategory: ", selectedCategory);
 
   const handleChange = (
     event: React.SyntheticEvent<Element, Event>,
@@ -34,6 +37,7 @@ function Categories() {
     details?: AutocompleteChangeDetails<string> | undefined
   ) => {
     setSelectedCategory(newValue);
+    handleChangeCategories(newValue);
   };
 
   return (

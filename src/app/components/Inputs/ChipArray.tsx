@@ -2,29 +2,21 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
+import { ChipData } from "../../page";
 
-interface ChipData {
-  key: number;
-  label: string | number[];
+interface ComponentProps {
+  chipData: ChipData[];
+  handleDelete: (chipToDelete: ChipData) => void;
 }
 
 const ListItem = styled("li")(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export default function ChipsArray() {
-  const [chipData, setChipData] = React.useState<ChipData[]>([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" },
-    { key: 5, label: [200, 350] },
-  ]);
+// ChipsArray.tsx
 
-  const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
-  };
+const ChipsArray: React.FC<ComponentProps> = ({ chipData, handleDelete }) => {
+  const [chips, setChips] = React.useState(chipData);
 
   return (
     <Paper
@@ -40,17 +32,22 @@ export default function ChipsArray() {
       }}
       component="ul"
     >
-      {chipData.map(data => {
+      {chips.map(data => {
         return (
           <ListItem key={data.key}>
             <Chip
               sx={{ backgroundColor: "white", borderRadius: "2px" }}
               label={data.label}
-              onDelete={handleDelete(data)}
+              onDelete={() => {
+                handleDelete(data);
+                setChips(chips.filter(d => d !== data));
+              }} // Update state after deleting chip
             />
           </ListItem>
         );
       })}
     </Paper>
   );
-}
+};
+
+export default ChipsArray;
