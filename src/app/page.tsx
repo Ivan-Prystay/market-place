@@ -24,6 +24,8 @@ export interface ChipData {
   label: string;
 }
 
+const priceRegex = /^(0|[1-9]\d?|[1-3]\d{2}|400)\s*-\s*(0|[1-9]\d?|[1-3]\d{2}|400)\s*\$$/;
+
 export default function Page(): React.ReactNode {
   const [searchText, setSearchText] = useState("");
   const handleSearchText = (text: string) => {
@@ -35,7 +37,8 @@ export default function Page(): React.ReactNode {
     setChangeCategories(categories);
   };
 
-  const [changePrise, setChangePrice] = useState<number[]>([0, 400]);
+  const [changePrice, setChangePrice] = useState<number[]>([0, 400]);
+
   const handleChangePrice = (price: number[]) => {
     setChangePrice(price);
   };
@@ -53,27 +56,36 @@ export default function Page(): React.ReactNode {
   };
 
   const [chipData, setChipData] = React.useState<ChipData[]>([]);
-
   useEffect(() => {
     const collectInputData = () => {
-      let data: ChipData[] = [];
-      if (searchText) data.push({ key: data.length, label: searchText });
-      if (changeTypeSession)
-        data.push({ key: data.length, label: changeTypeSession });
-      if (changeSortBy) data.push({ key: data.length, label: changeSortBy });
+      // Оновлення значень станів в батьківському компоненті
+      // при кожній зміні стану в дочірніх компонентах
+      setChipData(data => {
+        let newData: ChipData[] = [];
 
-      changeCategories.forEach((cat, index) => {
-        data.push({ key: data.length, label: cat });
-      });
+        if (searchText)
+          newData.push({ key: newData.length, label: searchText });
+        if (changeTypeSession)
+          newData.push({ key: newData.length, label: changeTypeSession });
+        if (changeSortBy)
+          newData.push({ key: newData.length, label: changeSortBy });
 
-      if (changePrise.length === 2) {
-        data.push({
-          key: data.length,
-          label: `${changePrise[0]} - ${changePrise[1]} $`,
+        changeCategories.forEach((cat, index) => {
+          newData.push({ key: newData.length, label: cat });
         });
-      }
 
-      setChipData(data);
+        if (
+          changePrice.length === 2 &&
+          (changePrice[0] !== 0 || changePrice[1] !== 400)
+        ) {
+          newData.push({
+            key: newData.length,
+            label: `${changePrice[0]} - ${changePrice[1]} $`,
+          });
+        }
+
+        return newData;
+      });
     };
 
     collectInputData();
@@ -81,12 +93,33 @@ export default function Page(): React.ReactNode {
     searchText,
     changeTypeSession,
     changeSortBy,
-    changePrise,
+    changePrice,
     changeCategories,
   ]);
 
-  const handleDelete = (chipToDelete: ChipData) => () => {
+  const handleDelete = (chipToDelete: ChipData) => {
     setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+
+    // Ідентифікуємо, який саме інпут потрібно оновити
+    const isPriceChip = priceRegex.test(chipToDelete.label);
+
+    if (isPriceChip) {
+      // Якщо це чіп із ціною
+      setChangePrice([0, 400]);
+    } else if (changeCategories.includes(chipToDelete.label)) {
+      setChangeCategories(
+        changeCategories.filter(category => category !== chipToDelete.label)
+      );
+    } else if (changeTypeSession === chipToDelete.label) {
+      // Якщо це чіп із типом сесії
+      setChangeTypeSession(null);
+    } else if (changeSortBy === chipToDelete.label) {
+      // Якщо це чіп із умовою сортування
+      setChangeSortBy(null);
+    } else {
+      // Інші випадки для інших інпутів
+      setSearchText("");
+    }
   };
 
   return (
@@ -135,12 +168,27 @@ export default function Page(): React.ReactNode {
           {/******************************* FORM *******************************/}
 
           <FormControl className="tw-mt-[250px] tw-w-[100%] tw-relative">
-            <SearchText handleSearchText={handleSearchText} />
+            <SearchText
+              searchText={searchText}
+              handleSearchText={handleSearchText}
+            />
             <div className="tw-flex tw-flex-row tw-justify-between tw-gap-6 tw-mt-10 tw-bg-transparent ">
-              <Categories handleChangeCategories={handleChangeCategories} />
-              <Price handleChangePrice={handleChangePrice} />
-              <TypeSession handleChangeTypeSession={handleChangeTypeSession} />
-              <SortBy handleChangeSortBy={handleChangeSortBy} />
+              <Categories
+                changeCategories={changeCategories}
+                handleChangeCategories={handleChangeCategories}
+              />
+              <Price
+                changePrice={changePrice}
+                handleChangePrice={handleChangePrice}
+              />
+              <TypeSession
+                changeTypeSession={changeTypeSession}
+                handleChangeTypeSession={handleChangeTypeSession}
+              />
+              <SortBy
+                changeSortBy={changeSortBy}
+                handleChangeSortBy={handleChangeSortBy}
+              />
             </div>
 
             <ChipsArray chipData={chipData} handleDelete={handleDelete} />

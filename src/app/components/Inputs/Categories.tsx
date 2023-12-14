@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, {
   AutocompleteChangeDetails,
@@ -6,6 +6,11 @@ import Autocomplete, {
 } from "@mui/material/Autocomplete";
 import { Chip, FormControl } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+interface ComponentProps {
+  changeCategories: string[];
+  handleChangeCategories: (categories: string[]) => void;
+}
 
 const theme = createTheme({
   components: {
@@ -25,9 +30,8 @@ const categories = ["Astrology's", "Numerology's", "Tarot"];
 
 function Categories({
   handleChangeCategories,
-}: {
-  handleChangeCategories: (categories: string[]) => void;
-}) {
+  changeCategories,
+}: ComponentProps): React.ReactNode {
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 
   const handleChange = (
@@ -36,9 +40,11 @@ function Categories({
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<string> | undefined
   ) => {
-    setSelectedCategory(newValue);
     handleChangeCategories(newValue);
   };
+  useEffect(() => {
+    setSelectedCategory(changeCategories);
+  }, [changeCategories]);
 
   return (
     <FormControl className="tw-rounded-xl tw-flex-1 ">
@@ -50,7 +56,6 @@ function Categories({
           disablePortal
           id="change-categories-specialist"
           options={categories}
-          // filterSelectedOptions
           value={selectedCategory}
           onChange={handleChange}
           renderOption={(props, option) => {

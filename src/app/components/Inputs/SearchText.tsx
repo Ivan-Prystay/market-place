@@ -1,15 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export default function SearchText({
-  handleSearchText,
-}: {
+interface ComponentProps {
+  searchText: string;
   handleSearchText: (text: string) => void;
-}): React.ReactNode {
+}
+
+export default function SearchText({
+  searchText,
+  handleSearchText,
+}: ComponentProps): React.ReactNode {
   const [value, setValue] = useState("");
 
   const handleClear = () => {
@@ -18,8 +22,12 @@ export default function SearchText({
   };
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: string = event.target.value;
-    setTimeout(() => (setValue(newValue), handleSearchText(newValue)), 50);
+    setTimeout(() => handleSearchText(newValue), 50);
   };
+
+  useEffect(() => {
+    setValue(searchText);
+  }, [searchText]);
 
   return (
     <TextField

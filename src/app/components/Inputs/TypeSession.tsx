@@ -21,13 +21,17 @@ const theme = createTheme({
   },
 });
 
-const typesSession = ["On-line", "Off-line"];
+interface ComponentProps {
+  changeTypeSession: string | null;
+  handleChangeTypeSession: (typeSession: string | null) => void;
+}
+
+const options = ["On-line", "Off-line"];
 
 function TypeSession({
+  changeTypeSession,
   handleChangeTypeSession,
-}: {
-  handleChangeTypeSession: (typeSession: string | null) => void;
-}) {
+}: ComponentProps) {
   const [typeSession, setTypeSession] = useState<string | null>(null);
 
   const handleChange = (
@@ -36,39 +40,24 @@ function TypeSession({
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<string> | undefined
   ) => {
-    setTypeSession(newValue);
+    handleChangeTypeSession(newValue);
   };
 
   React.useEffect(() => {
-    handleChangeTypeSession(typeSession);
-  });
+    setTypeSession(changeTypeSession);
+  }, [changeTypeSession]);
 
   return (
     <FormControl className="tw-rounded-xl tw-flex-1 ">
       <ThemeProvider theme={theme}>
         <Autocomplete
-          // limitTags={1}
-          // multiple
           sx={{ border: "none", backgroundColor: "#79839B" }}
           disablePortal
           id="change-type-session"
           placeholder="Type session"
-          options={typesSession}
-          // filterSelectedOptions
-          // value={typeSession}
+          options={options}
+          value={typeSession}
           onChange={handleChange}
-          // renderOption={(props, option) => {
-          //   return (
-          //     <li {...props} key={option}>
-          //       {option}
-          //     </li>
-          //   );
-          // }}
-          // renderTags={(tagValue, getTagProps) => {
-          //   return tagValue.map((option, index) => (
-          //     <Chip {...getTagProps({ index })} key={option} label={option} />
-          //   ));
-          // }}
           renderInput={params => (
             <TextField
               {...params}

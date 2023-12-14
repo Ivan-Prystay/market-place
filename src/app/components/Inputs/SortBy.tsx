@@ -30,11 +30,12 @@ const sortParameters = [
   "Available now",
 ];
 
-function SortBy({
-  handleChangeSortBy,
-}: {
+interface ComponentProps {
+  changeSortBy: string | null;
   handleChangeSortBy: (nameSort: string | null) => void;
-}) {
+}
+
+function SortBy({ handleChangeSortBy, changeSortBy }: ComponentProps) {
   const [sortParam, setSortParam] = useState<string | null>(null);
 
   const handleChange = (
@@ -43,13 +44,12 @@ function SortBy({
     reason: AutocompleteChangeReason,
     details: AutocompleteChangeDetails<string> | undefined
   ) => {
-    setSortParam(newValue);
     handleChangeSortBy(newValue);
   };
 
   React.useEffect(() => {
-    handleChangeSortBy(sortParam);
-  });
+    setSortParam(changeSortBy);
+  }, [changeSortBy]);
 
   return (
     <FormControl className="tw-rounded-xl tw-flex-1">
@@ -58,6 +58,7 @@ function SortBy({
           sx={{ border: "none", backgroundColor: "#79839B" }}
           disablePortal
           id="change-sort-by"
+          value={sortParam}
           options={sortParameters}
           onChange={handleChange}
           renderOption={(props, option) => {

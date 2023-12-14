@@ -91,11 +91,15 @@ function valuetext(value: number) {
   return `${value} $`;
 }
 
-export default function Price({
-  handleChangePrice,
-}: {
+interface ComponentProps {
+  changePrice: number[];
   handleChangePrice: (price: number[]) => void;
-}) {
+}
+
+export default function Price({
+  changePrice,
+  handleChangePrice,
+}: ComponentProps) {
   const [price, setPrice] = React.useState([0, 400]);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -132,7 +136,7 @@ export default function Price({
         setPrice([clamped - minDistance, clamped]);
       }
     } else {
-      setPrice(newValue as number[]);
+      handleChangePrice(newValue as number[]);
     }
   };
 
@@ -171,8 +175,8 @@ export default function Price({
   };
 
   React.useEffect(() => {
-    handleChangePrice(price);
-  });
+    setPrice(changePrice);
+  }, [changePrice]);
 
   React.useEffect(() => {
     document.addEventListener("keydown", handleEscapeKeyPress);

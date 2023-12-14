@@ -19,7 +19,6 @@ const ChipsArray: React.FC<ComponentProps> = ({ chipData, handleDelete }) => {
   React.useEffect(() => {
     setChips(chipData);
   }, [chipData]);
-  console.log("chips: ", chips);
 
   return (
     <Paper
@@ -42,8 +41,8 @@ const ChipsArray: React.FC<ComponentProps> = ({ chipData, handleDelete }) => {
               sx={{ backgroundColor: "white", borderRadius: "2px" }}
               label={chip.label}
               onDelete={() => {
-                handleDelete(chip);
                 setChips(chips.filter(d => d !== chip));
+                handleDelete(chip);
               }}
             />
           </ListItem>
