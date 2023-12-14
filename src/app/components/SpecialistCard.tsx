@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +10,6 @@ import {
   Button,
   List,
   ListItem,
-  IconButton,
   ListItemText,
   ListItemIcon,
   Stack,
@@ -17,7 +17,6 @@ import {
 import {
   AttachMoneyOutlined,
   FavoriteBorder,
-  HeartBroken,
   StarBorder,
 } from "@mui/icons-material";
 
@@ -29,7 +28,6 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 /*                  **TYPE                    */
 import { Person } from "../types/SpecialistCard";
-import Link from "next/link";
 
 function SpecialistCard({
   specialist: { name, about, id },

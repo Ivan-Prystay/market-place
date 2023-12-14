@@ -267,21 +267,3 @@ export default function Page(): React.ReactNode {
     </main>
   );
 }
-
-/*
-
- const formattedChipData = [
-    { key: 0, label: searchText },
-    // Format category as individual chips
-    ...changeCategories.map((cat, index) => ({ key: index + 1, label: cat })),
-    // Format price as a range
-    {
-      key: changeCategories.length + 1,
-      label: `${changePrise[0]} - ${changePrise[1]}`,
-    },
-    { key: changeCategories.length + 2, label: changeTypeSession },
-    { key: changeCategories.length + 3, label: changeSortBy },
-  ];
-
-
-*/
