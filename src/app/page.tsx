@@ -58,8 +58,6 @@ export default function Page(): React.ReactNode {
   const [chipData, setChipData] = React.useState<ChipData[]>([]);
   useEffect(() => {
     const collectInputData = () => {
-      // Оновлення значень станів в батьківському компоненті
-      // при кожній зміні стану в дочірніх компонентах
       setChipData(data => {
         let newData: ChipData[] = [];
 
@@ -100,24 +98,19 @@ export default function Page(): React.ReactNode {
   const handleDelete = (chipToDelete: ChipData) => {
     setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
 
-    // Ідентифікуємо, який саме інпут потрібно оновити
     const isPriceChip = priceRegex.test(chipToDelete.label);
 
     if (isPriceChip) {
-      // Якщо це чіп із ціною
       setChangePrice([0, 400]);
     } else if (changeCategories.includes(chipToDelete.label)) {
       setChangeCategories(
         changeCategories.filter(category => category !== chipToDelete.label)
       );
     } else if (changeTypeSession === chipToDelete.label) {
-      // Якщо це чіп із типом сесії
       setChangeTypeSession(null);
     } else if (changeSortBy === chipToDelete.label) {
-      // Якщо це чіп із умовою сортування
       setChangeSortBy(null);
     } else {
-      // Інші випадки для інших інпутів
       setSearchText("");
     }
   };
@@ -230,17 +223,20 @@ export default function Page(): React.ReactNode {
         </div>
         <div className="tw-my-20">
           <ul className="tw-flex tw-flex-row tw-text-xl tw-text-[#3A475C] tw-justify-between">
-            <li className="tw-flex-1 tw-text-center">
-              <div className="card tw-mb-5">
+            <li className="tw-flex-1 tw-text-center ">
+              <div className="card tw-mb-5 tw-w-[411px]">
                 <div className="card__front">
                   <Image
                     src={aboutAstrology}
-                    width={405}
+                    width={411}
                     alt="Astrology"
                   ></Image>
                 </div>
-                <div className="card__back">
-                  <p>
+                <div className="card__back tw-border-[1px] tw-border-[#4B4B4B] tw-border-solid tw-h-[100%] tw-px-[17px]">
+                  <h3 className="tw-text-2xl tw-font-nixieone tw-text-[#FFFCC7] tw-my-[50px]">
+                    Astrology
+                  </h3>
+                  <p className="tw-text-2xl tw-tracking-[0.72px]">
                     Is a service that helps you uncover and understand the
                     influence of planets and stars on your life. Our astrologers
                     analyse your astrological chart, identifying your strengths
@@ -259,16 +255,19 @@ export default function Page(): React.ReactNode {
               </Link>
             </li>
             <li className="tw-flex-1 tw-text-center">
-              <div className="card tw-mb-5">
+              <div className="card tw-mb-5 tw-w-[411px]">
                 <div className="card__front">
                   <Image
                     src={aboutNumerology}
-                    width={405}
+                    width={411}
                     alt="Numerology"
                   ></Image>
                 </div>
-                <div className="card__back">
-                  <p>
+                <div className="card__back tw-border-[1px] tw-border-[#4B4B4B] tw-border-solid tw-h-[100%] tw-px-[17px]">
+                  <h3 className="tw-text-2xl tw-font-nixieone tw-text-[#FFFCC7] tw-my-[50px]">
+                    Numerology
+                  </h3>
+                  <p className="tw-text-2xl tw-tracking-[0.72px]">
                     Is a service that is based on the study of numbers and their
                     influence on your life. Numerologists analyse your name and
                     birthdate, revealing deep insights into your personality,
@@ -286,12 +285,15 @@ export default function Page(): React.ReactNode {
               </Link>
             </li>
             <li className="tw-flex-1 tw-text-center">
-              <div className="card tw-mb-5">
+              <div className="card tw-mb-5 tw-w-[411px]">
                 <div className="card__front">
-                  <Image src={aboutTarot} width={405} alt="Tarot"></Image>
+                  <Image src={aboutTarot} width={411} alt="Tarot"></Image>
                 </div>
-                <div className="card__back">
-                  <p>
+                <div className="card__back tw-border-[1px] tw-border-[#4B4B4B] tw-border-solid tw-h-[100%] tw-px-[17px]">
+                  <h3 className="tw-text-2xl tw-font-nixieone tw-text-[#FFFCC7] tw-my-[50px]">
+                    Tarot
+                  </h3>
+                  <p className="tw-text-2xl tw-tracking-[0.72px]">
                     Is a service that utilises tarot cards to explore your life
                     and future. Our tarot readers help you find answers to your
                     questions by interpreting the symbolism of each card and

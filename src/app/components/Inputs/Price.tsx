@@ -16,14 +16,6 @@ const Input = styled.input`
   font-size: 14px;
   border: 1px solid #d9d9d9;
   outline: none;
-
-  //? Hide spin-buttons */
-  /* -moz-appearance: textfield;
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  } */
 `;
 
 const CustomSliderStyles = {
@@ -100,7 +92,7 @@ export default function Price({
   changePrice,
   handleChangePrice,
 }: ComponentProps) {
-  const [price, setPrice] = React.useState([0, 400]);
+  const [price, setPrice] = React.useState(changePrice);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleClick = (e: MouseEvent) => {
@@ -130,10 +122,10 @@ export default function Price({
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
         const clamped = Math.min(newValue[0], 400 - minDistance);
-        setPrice([clamped, clamped + minDistance]);
+        handleChangePrice([clamped, clamped + minDistance]);
       } else {
         const clamped = Math.max(newValue[1], minDistance);
-        setPrice([clamped - minDistance, clamped]);
+        handleChangePrice([clamped - minDistance, clamped]);
       }
     } else {
       handleChangePrice(newValue as number[]);
@@ -150,7 +142,7 @@ export default function Price({
     if (value !== undefined) {
       const newValues = [...price];
       newValues[index] = value;
-      setPrice(newValues);
+      handleChangePrice(newValues);
 
       if (newValues[0] === newValues[1]) {
         newValues[1] = newValues[1] + 10;
