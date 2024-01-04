@@ -3,7 +3,7 @@ import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const SigninButton = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   return (
     <div>
@@ -12,7 +12,7 @@ const SigninButton = () => {
           <p className=" tw-text-orange-400 tw-text-xl">{session.user.name}</p>
           <button
             className="tw-text-white tw-text-xl tw-ease-linear tw-duration-700 hover:tw-ease-linear hover:tw-duration-300 hover:tw-text-accent-color"
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: "/" })}
           >
             Sign Out
           </button>
