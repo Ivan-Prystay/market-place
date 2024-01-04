@@ -24,7 +24,7 @@ const config: Config = {
         sans: ['var(--font-inter)'],
       },
       backgroundImage: {
-        'my-image': "url('../../public/img/background.png')",
+        'my-image': "url('../../public/img/background.webp')",
         'my-logo': "url('../../public/svg/logo.svg')",
         'my-logo-hover': "url('../../public/svg/logo_hover.svg')",
       },

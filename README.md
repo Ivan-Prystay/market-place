@@ -35,8 +35,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## LINKS
+
 !!! Для використання класів tailwind необхідно додавати префікс "tw-" !!!
 
 ### https://market-place-snowy.vercel.app/
 
 ### http://localhost:3000
+
+### API https://marketplace-auth.onrender.com/swagger
+
+Sign-up https://marketplace-auth.onrender.com/v1/auth/sign-up

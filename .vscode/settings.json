@@ -1,10 +1,11 @@
 {
     "svg.preview.backgroundSaveTo": "Global",
-    "docwriter.style": "JSDoc",
+    "docwriter.style": "Auto-detect",
     "docwriter.language": "Russian",
     "docwriter.progress.trackFunctions": true,
     "docwriter.progress.trackClasses": true,
     "docwriter.progress.trackMethods": true,
     "docwriter.hotkey.mac": "⌘ + .",
-    "docwriter.progress.trackTypes": true
+    "docwriter.progress.trackTypes": true,
+    "files.autoSave": "onFocusChange"
 }
